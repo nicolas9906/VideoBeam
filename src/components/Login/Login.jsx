@@ -1,31 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './login.css';
 import Fet from './img/Fet.jpg'
 import email from './img/email.png';
 import pass from './img/pass.png';
-import  { useForm } from '../../hooks/useForm'
-import  { useDispatch } from 'react-redux';
-import {  startLogin } from '../../action/auth'
-import { GoogleLogin } from 'react-google-login'; 
+import Swal from 'sweetalert2';
+import  { useAuthStore } from '../../hooks/useAuthStore';
+import {useForm} from '../../hooks/useForm';
+
+
+
+const loginFormFields = {
+  correo:    '',
+  lpassword: '',
+}
 
 export const LoginScreen = () => {
 
-   const dispatch = useDispatch();
+
+  const { startLogin, errorMessage} = useAuthStore();
+
+  const { correo, lpassword, onInputChange:onLoginInputChange } = useForm( loginFormFields );
+  
+
+  const loginSubmit = ( event ) => {
+      event.preventDefault();
+      startLogin({ correo: correo, password:lpassword });
+  }
 
 
-  const [ formLoginValues, handleLoginInputChange ] = useForm({
-    correo: 'nicolas@hotmail.com',
-    lpassword: '123456'
-});
+  useEffect(() => {
+    if ( errorMessage !== undefined ) {
+      Swal.fire('Error en la autenticación', errorMessage, 'error');
+    }    
+  }, [errorMessage])
 
-  const {correo,lpassword} = formLoginValues;
 
 
-  const handleLogin = ( e ) => {
-    e.preventDefault();
-    dispatch( startLogin( correo, lpassword ) );
-}
+//    const dispatch = useDispatch();
+
+
+//   const [ formLoginValues, handleLoginInputChange ] = useForm({
+//     correo: '',
+//     lpassword: ''
+// });
+
+//   const {correo,lpassword} = formLoginValues;
+
+
+//   const handleLogin = ( e ) => {
+//     e.preventDefault();
+//     dispatch( startLogin( correo, lpassword ) );
+// }
 
   
 
@@ -42,7 +68,7 @@ export const LoginScreen = () => {
          </div>
          <div>
            <h1>Bienvenido</h1>
-          <form onSubmit={ handleLogin }> 
+          <form onSubmit={ loginSubmit }> 
            <div>
              <img src={email} alt="email" className="email"/>
              <input 
@@ -51,7 +77,7 @@ export const LoginScreen = () => {
               className="name"
               name="correo"
               value={correo}
-              onChange={ handleLoginInputChange }
+              onChange={ onLoginInputChange }
               />
            </div>
            <div className="second-input">
@@ -61,7 +87,7 @@ export const LoginScreen = () => {
               placeholder="Contraseña"
               name='lpassword'
               value={ lpassword }
-              onChange= {handleLoginInputChange }
+              onChange= {onLoginInputChange }
                className="name"
                
                />

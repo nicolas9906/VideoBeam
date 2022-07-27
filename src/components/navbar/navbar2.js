@@ -1,62 +1,56 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { startLogout } from '../../action/auth';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Navbar,Container } from 'react-bootstrap';
-import './Navbar.css';
+import { useAuthStore } from '../../hooks/useAuthStore';
+
+
 export const Navbar2 = () => {
 
-    const dispatch = useDispatch();
-    const { name } = useSelector( state => state.auth );
-        const navigate= useNavigate();
-    const handleLogout = () => {
-        dispatch( startLogout() );
-        navigate('/')
-    }
-
+    const { startLogout, user } = useAuthStore();
+    
     return (
-        
+            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+            
+            <Link 
+                className="navbar-brand" 
+                to="/"
+            >
+              Menu
+            </Link>
 
 
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="navbar-fluid">
+            <div className="navbar-collapse">
                 <div className="navbar-nav">
-                     
+                <NavLink 
+                          
+                          className={ ( {isActive}) => "nav-item nav-link" + (isActive ? 'active' : '')  }                   
+                         
+                          to="/agregar"
+                      >
+                          agregar
+                      </NavLink>      
                     <NavLink 
                           
                         className={ ( {isActive}) => "nav-item nav-link" + (isActive ? 'active' : '')  }                   
                        
                         to="/mostrar"
                     >
-                        Prestados
+                        mostrar
                     </NavLink>
                 </div>
-
-
-
-                <div className="navbar-nav">
-                     
-                    <NavLink 
-                          
-                        className={ ( {isActive}) => "nav-item nav-link" + (isActive ? 'active' : '')  }                   
-                       
-                        to="/agregar"
-                    >
-                        Agregar
-                    </NavLink>
-                </div>
-
-
             </div>
+
+
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
                   <span className='nav-item nav-link text-info'>
-                    {name}
+                    {user.name}
                   </span>
                   <button 
             
-            onClick={handleLogout}
+            onClick={startLogout}
             >
             
                 <span>Cerrar session</span>

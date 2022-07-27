@@ -7,104 +7,68 @@ import { startRegister } from '../../action/auth'
 import Swal from 'sweetalert2';
 
 
-
-
 export const Prestamo = ()=>{
-  const dispatch = useDispatch();
+
     
-  const [ formRegisterValues, handleRegisterInputChange ] = useForm({
-      names: '',
-      email: '',
-      password: '',
-      repassword: ''
-  });
-  const { name, email, password, repassword } = formRegisterValues;
-  const handleRegister = ( e ) => {
-      e.preventDefault();
-      dispatch( startRegister( name, email,password,repassword ) );
-      if ( password !== repassword ) {
-          return Swal.fire('Error', 'Las contraseñas deben de ser iguales','error');
-      }
 
 
 
-    return (
-
-     
-	
-    
+    return(
 
     <>
         <Navbarr/>
-        <div className="main-registro">
-        <div className="sub-main-registro">
-        <form onSubmit={ handleRegister }>
+      
+        <h1> Nuevo evento </h1>
+<hr />
+<form className="container">
 
-        <div className="input-email">
-            <label htmlFor='email'></label>
-            <input 
-            type='text'
-            placeholder="Nombre" 
-             name='name'
-             value={name} 
-             onChange={ handleRegisterInputChange }
-            className="name"
-            />
-            </div>
-            <div className="input-email">
-            <label htmlFor='email'></label>
-            <input 
-            type='email'
-            placeholder="Correo institucional"
-             id='email' 
-             name='email'
-             value={email} 
-             onChange={ handleRegisterInputChange} 
-            className="name"
-            />
-            </div>
+    <div className="form-group mb-2">
+        <label>Fecha y hora inicio</label>
+        <input className="form-control" placeholder="Fecha inicio" />
+    </div>
 
-               <br></br> 
+    <div className="form-group mb-2">
+        <label>Fecha y hora fin</label>
+        <input className="form-control" placeholder="Fecha inicio" />
+    </div>
 
-            <div className="input-password">
-            <label htmlFor='password'></label>
-            <input 
-            type='password'
-            placeholder="Contraseña" 
-             name='passoword'
-             value={repassword}
-              onChange={ handleRegisterInputChange}
-            className="password"
-            />
+    <hr />
+    <div className="form-group mb-2">
+        <label>Titulo y notas</label>
+        <input 
+            type="text" 
+            className="form-control"
+            placeholder="Título del evento"
+            name="title"
+            autoComplete="off"
+        />
+        <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
+    </div>
 
-            </div>
-            <br></br>
-            <div className="input-password">
-            <label htmlFor='password'></label>
-            <input 
-            type='password'
-            placeholder="repite Contraseña" 
-             name='repassoword'
-             value={password}
-              onChange={ handleRegisterInputChange}
-            className="password"
-            />
+    <div className="form-group mb-2">
+        <textarea 
+            type="text" 
+            className="form-control"
+            placeholder="Notas"
+            rows="5"
+            name="notes"
+        ></textarea>
+        <small id="emailHelp" className="form-text text-muted">Información adicional</small>
+    </div>
 
-            </div>
+    <button
+        type="submit"
+        className="btn btn-outline-primary btn-block"
+    >
+        <i className="far fa-save"></i>
+        <span> Guardar</span>
+    </button>
 
-            <br></br>
+    </form>
 
-
-            
-        </form>
-        
-        </div>
-        
-        </div>
-        
         </>
 	
    
        )
 }
-}
+

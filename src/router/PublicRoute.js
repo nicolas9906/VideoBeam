@@ -5,11 +5,11 @@ import { Navigate } from 'react-router-dom'
 
 
 
-export const PublicRoute = ({children,uid}) => {
+export const PublicRoute = ({children,status}) => {
 
  
  
-  return uid
+  return status
   ? <Navigate to="/SelectVid"/>
   : children
 };

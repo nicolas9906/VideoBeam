@@ -2,13 +2,13 @@ export const types ={
 
 
 
-    eventSetActive: '[event] Set Active',
+    agregarSetActive: '[event] Set Active',
 
-    evetStarAddNew: '[event] Star add new',
-    eventAddNew: '[event] Add new',
-    eventClearActiveEvent: '[event] Clear active event',
-    eventUpdated: '[event] Event updated',
-    eventDeleted: '[event] Event deleted',
+    agregarStarAddNew: '[event] Star add new',
+    agregarAddNew: '[event] Add new',
+    agregarClearActiveAgregar: '[event] Clear active agregar',
+    agregarUpdated: '[event] Agregar updated',
+    agregarDeleted: '[event] Agregar deleted',
 
 
 

@@ -1,19 +1,9 @@
-.logo{
-    height: 15px;
-    width: 10px;
-    padding-right: 2rem;
-    padding-left: 2rem;
-}
-.navbar{
- 
-    height: 5rem;
-    height: auto;
-    
-}
+
+
 .nav-link{
     margin-right: 1rem;
     font-size: 25px;
-    color: rgb(236, 245, 238)
+    color: rgb(36, 83, 46)
 
 }
 .container-fluid{

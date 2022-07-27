@@ -1,13 +1,16 @@
 import React from "react";
 import { store } from './store/store';
-import { AppRouters } from './AppRouters/AppRouters';
+import { AppRouter } from './router/AppRouter';
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from "react-redux";
-import bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
+
 
 export const  App = () => {
   return (
     <Provider store={ store }> 
-         <AppRouters/>
+    <BrowserRouter>
+         <AppRouter/>
+         </BrowserRouter>
          </Provider>
 
   );

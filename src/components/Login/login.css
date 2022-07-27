@@ -71,15 +71,7 @@
       border: none;
   }
 
-  button{
-    width: 380px;
-    height: 50px;
-    border-radius: 60px;
-    background-color: #3daa31;
-    color: white;
-    font-size: 25px;
-    border: none;
-  }
+  
   .login-button{
       padding-top: 25px;
   }
